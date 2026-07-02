@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#0c0c10">
+  <title>Pod Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- The pod. Cards, the centre button and the monarch token are injected/kept here. -->
+  <div id="pod">
+    <button id="pod-center" aria-label="Pod menu">☰</button>
+    <div id="monarch" title="Monarch — drag onto a player, or drop in empty space to remove">♛</div>
+    <div id="match-timer" title="Drag to an edge · tap to start a turn timer">
+      <div class="t-pill t-main">0:00</div>
+      <div class="t-pill t-sec">0:00</div>
+    </div>
+  </div>
+
+  <!-- Central menu -->
+  <div class="backdrop" id="menu-backdrop">
+    <div class="modal" id="menu-modal">
+      <h2>Pod menu</h2>
+      <div class="seg" id="seg-players"><span class="lbl">Players</span></div>
+      <div class="seg" id="seg-layout"><span class="lbl">Layout</span></div>
+      <div class="seg" id="seg-life"><span class="lbl">Starting life</span></div>
+      <div class="menu-actions" id="menu-actions"></div>
+      <div class="row-btns"><button id="menu-close">Close</button></div>
+    </div>
+  </div>
+
+  <!-- Dice -->
+  <div class="backdrop" id="dice-backdrop">
+    <div class="modal">
+      <h2>Roll dice</h2>
+      <div class="dice-grid" id="dice-grid"></div>
+      <div id="dice-result"></div>
+      <div class="row-btns"><button id="dice-close">Done</button></div>
+    </div>
+  </div>
+
+  <!-- Generic confirm -->
+  <div class="backdrop" id="confirm-backdrop">
+    <div class="modal">
+      <h2 id="confirm-title">Are you sure?</h2>
+      <p id="confirm-msg"></p>
+      <div class="row-btns">
+        <button id="confirm-cancel">Cancel</button>
+        <button id="confirm-ok" class="destructive">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Planechase panel (right half of the screen when active) -->
+  <div id="planechase">
+    <button id="pc-close" class="pc-close" aria-label="Exit Planechase">✕</button>
+    <button id="pc-rotate" class="pc-rotate" aria-label="Rotate plane">⟳</button>
+    <div id="plane-stage" title="Tap the card to rotate it">
+      <div id="plane-rot">
+        <img id="plane-img" alt="" draggable="false">
+        <div id="plane-card" class="plane-card">
+          <div class="plane-art"></div>
+          <div class="plane-body">
+            <div class="plane-name"></div>
+            <div class="plane-type"></div>
+            <div class="plane-static"></div>
+            <div class="plane-chaos"></div>
+          </div>
+          <div class="plane-foot"></div>
+        </div>
+      </div>
+    </div>
+    <div id="plane-caption" class="plane-caption"></div>
+    <div class="pc-controls">
+      <button id="pc-back" class="pc-btn">↩ Previous</button>
+      <button id="pc-walk" class="pc-btn">🧭 Planeswalk</button>
+      <button id="pc-roll" class="pc-btn">🎲 Roll</button>
+      <button id="pc-read" class="pc-btn">🔊 Read aloud</button>
+    </div>
+  </div>
+
+  <!-- Card search (used to assign a commander to a player) -->
+  <div class="backdrop" id="search-backdrop">
+    <div class="modal">
+      <h2 id="search-title">Set commander</h2>
+      <input id="search-input" type="text" placeholder="Type a card name…" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div id="search-results" class="search-results"></div>
+      <div class="row-btns">
+        <button id="search-remove">Remove commander</button>
+        <button id="search-close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Smooth result popup for the planar die -->
+  <div id="die-popup" class="die-popup">
+    <div class="die-card">
+      <div class="die-symbol"></div>
+      <div class="die-label"></div>
+      <div class="die-sub"></div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
